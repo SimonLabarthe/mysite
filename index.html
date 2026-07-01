@@ -26,7 +26,68 @@
       font-family: "Comic sans MS", sans-serif;
       background-color: #458B74; /* soft cream, easier on the eyes than pure white */
       color: #A52A2A;
-      line-height: 1.6; /* space between lines, like readable prose */hznnnnn4 4swwwwwwwww
+      line-height: 1.6; /* space between lines, like readable prose */
+    }
+
+    header {
+      background-color: #2b2b2b;
+      color: #fdf6ec;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+    }
+
+    nav {
+      background-color: #ffb703; /* warm yellow */
+      padding: 0.75rem;
+      text-align: center;
+    }
+
+    /* a = targets every link. 
+       a:hover = targets a link ONLY while mouse is on it */
+    nav a {
+      color: #2b2b2b;
+      text-decoration: none;
+      font-weight: bold;
+      margin: 0 0.5rem;
+    }
+
+    nav a:hover {
+      text-decoration: underline wavy;
+    }
+
+    main {
+      max-width: 700px;
+      margin: 2rem auto; /* auto = centers the block horizontally */
+      padding: 0 1rem;
+    }
+
+    /* class sector: targets elements with class = "cards". Note the DOT. */
+    /* classes = reusable "tags" you assign */
+    .card {
+      background-color: white;
+      border-radius: 12px;
+      padding:1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 10 px rgba(0,0,0,0.08); 
+    }
+
+    aside {
+      background-color: #ffe8d6;
+      border-left: 4px solid #ffb703;
+      padding: 1rem;
+      font-style: italic;
+    }
+
+    footer {text-align: center;
+            padding: 1.5rem;
+            color: #888;
+            font-size: 0.9rem;
+           }
+    
   </style>
 </head>
   
@@ -51,7 +112,7 @@
     <!-- article = a selft-contained chunk of content -->
     <!-- id = unique name tag-->
   <!-- h2 = title level 2 -->
-  <article id ="projects">
+  <article id ="projects" class = "card">
     <h2> Currend Projects </h2>
     <!-- ul = unorderd list (bullets). ol = ordered list (numbers) -->
     <!-- li = list item, one bullet -->
@@ -62,7 +123,7 @@
     </0l>
   </article>
 
-    <article id = "about">
+    <article id = "about" class = "card">
       <h2> About </h2>
          <!-- p = paragraph, the default block for plain text -->
           <p> 
@@ -96,9 +157,10 @@
     
   </main>
 
-  <-- footer = bootom of the page, usually copyrights / contact / small stuff -->
+  <-- footer = bootom of the page -->
     <footer id = "contact">
       <p> &copy; 2026 My Site -- built with HTML and happiness </p>
+    </footer>
 
 </body>
 </html>
