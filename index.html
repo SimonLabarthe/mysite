@@ -5,54 +5,82 @@
 
 <!-- invisible info for the reader -->
 <head>
-  
   <!-- for special characters -->
   <meta charset="UTF-8"> 
 
   <!-- appears in the navigacy outlet, not the page itself -->
   <title> My Site </title>
-  
 </head>
   
 <!-- what appears on the screen -->
 <body>
-  <!-- h1 = title level 1 (the biggest) -->
-  <h1> My Site </h1>
-  
-  <!-- p = paragraph, the default block for plain text -->
-  <p> 
-    Welcome. I am a political science student working on statistics, conflict, and football prediction models. 
-  </p>
+  <!-- header = top banner of the page -->
+  <header>
+      <!-- h1 = title level 1 (the biggest) -->
+      <h1> My Site </h1>
+      <p><em> powered by passion, Rstudio, and too much coffee </em></p>
+  </header>
 
-  <!-- a = anchor, makes a clickable link. -->
-  <!-- href = hypertext reference = destination -->
-  <p> 
-    Find my work on <a href = "https://github.com"> Github </a>. 
-  </p>
+  <!-- nav = navigation block, wraps links that move you around the site -->
+  <nav>
+    <a href = "#projects"> Projects </a> |
+    <a href = "#about"> About </a> |
+    <a href = "#contact"> Send help </a>
+  </nav>
 
+  <!-- main = the ONE primary content block -->
+  <main>
+    <!-- article = a selft-contained chunk of content -->
+    <!-- id = unique name tag-->
   <!-- h2 = title level 2 -->
-  <h2> Current projects </h2>
+  <article id ="projects">
+    <h2> Currend Projects </h2>
+    <!-- ul = unorderd list (bullets). ol = ordered list (numbers) -->
+    <!-- li = list item, one bullet -->
+    <0l> 
+      <li> World Cup 2026 match prediction pipeline </li>
+      <li> MID (Militarized Interstate Disputes) prediction with tidymodels </li>
+      <li> RDD on female mayors and violence in Brazil </li>
+    </0l>
+  </article>
 
-  <!-- ul = unorderd list (bullets). ol = ordered list (numbers) -->
-  <!-- li = list item, one bullet -->
-  <ul> 
-    <li> World Cup 2026 match prediction pipeline </li>
-    <li> MID (Militarized Interstate Disputes) prediction with tidymodels </li>
-    <li> RDD on female mayors and violence in Brazil </li>
-  </ul>
+    <article id = "about">
+      <h2> About </h2>
+         <!-- p = paragraph, the default block for plain text -->
+          <p> 
+            Welcome. I am a political science student working on statistics, conflict, and football prediction models. 
+          </p>
+        <!-- a = anchor, makes a clickable link. -->
+      
+        <!-- href = hypertext reference = destination -->
+        <p> 
+          Find my work on <a href = "https://github.com"> Github </a>. 
+        </p>
 
-  <!-- img = image
+        <!-- img = image
        src = source (file path or URL)
        alt = text shown if image fails to load -->
-  <img src="https://placehold.co/300x150" alt = "placeholder graph">
-
-  <!-- strong = bold
-       em = italic -->
-  <p>
-    Status: <strong> actively building </strong>, updates coming <em> soon </em>
-  </p>
+        <img src="https://placehold.co/300x150" alt = "placeholder graph">
+      
+        <!-- strong = bold
+             em = italic -->
+        <p>
+          Status: <strong> actively building </strong>, updates coming <em> soon </em>
+        </p>
   
-</body>
+      
+    </article>
 
-<!-- end doc -->
+    <!-- aside = tangential content, related but not core -->
+    <aside >
+    <p> Fun fact: this box is an &lt;aside&gt;, technically "not the main point" -- much like most of my footnotes.</p>
+  </aside> 
+    
+  </main>
+
+  <-- footer = bootom of the page, usually copyrights / contact / small stuff -->
+    <footer id = "contact">
+      <p> &copy; 2026 My Site -- built with HTML and happiness </p>
+
+</body>
 </html>
