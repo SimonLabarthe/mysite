@@ -9,39 +9,49 @@
   <meta charset="UTF-8"> 
 
   <!-- appears in the navigacy outlet, not the page itself -->
-  <title> My Site </title>
+  <title> 67 </title>
 
-  <!-- style = CSS lives here. Think of each rule as: selector { property: value; } -->
   <!-- selector = "which elements does this apply to" -->
   <style>
-    /* * = universal selector, targets EVERYTHING. Reset default browser spacing. */
+    /* * = universal selector */
     * {
       margin: 0;
       padding: 0;
-      box-sizing: border-box; /* width/height now include padding + border, less surprises */
+      box-sizing: border-box; 
     }
     
     /* element selector: targets ALL <body> tags */
     body {
-      font-family: "Comic sans MS", sans-serif;
-      background-color: #458B74; /* soft cream, easier on the eyes than pure white */
-      color: #A52A2A;
-      line-height: 1.6; /* space between lines, like readable prose */
+      font-family: "Comic sans MS", sans-serif; /* POLICE ATROCE */
+      background-color: #458B74; /* BLEU ATROCE */
+      color: #A52A2A; /* MARRON ATROCE */
+      line-height: 1.6; /* space between lines */
+      transition: 
+        background-color 0.3s, 
+        color 0.3s; /* smooth dark-mode switch */
+    }
+
+    /* body.dark = targets <body> ONLY when it also has class = "dark" */
+    body.dark {
+      background-color: #1e1e1e;
+      color: #eee;
     }
 
     header {
-      background-color: #2b2b2b;
-      color: #fdf6ec;
+      background-color: #EE3A8C; /* ROSE ATROCE */
+      color: #00F5FF; /* BLEU ECLAIRE ATROCE */
       padding: 2rem;
       text-align: center;
     }
 
     header h1 {
+      font-family: "Comic sans MS", serif;
       font-size: 2.5rem;
     }
 
     nav {
-      background-color: #ffb703; /* warm yellow */
+      background-color: #FFFF00; /* JAUNE PISSE */
+      color: #00FF7F; /* VERT PIQUANT */
       padding: 0.75rem;
       text-align: center;
     }
@@ -73,6 +83,35 @@
       padding:1.5rem;
       margin-bottom: 1.5rem;
       box-shadow: 0 4px 10 px rgba(0,0,0,0.08); 
+      transition: 
+        background-color 1s;
+    }
+
+    body.dark .card {
+      background-color: #2a2a2a;
+    }
+
+    /* generic button style */
+    button {
+      background-color: #ffb703;
+      border: none;
+      border-radius: 8px;
+      padding: 0.6rem 1.2rem;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer; /* hand icon on hover, signals "clickable" */
+      margin: 0.3rem;
+    }
+
+    button:hover {
+      background-color: #fb8500;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      color: #888;
+      font-size: 0.9rem;
     }
 
     aside {
@@ -96,15 +135,17 @@
   <!-- header = top banner of the page -->
   <header>
       <!-- h1 = title level 1 (the biggest) -->
-      <h1> My Site </h1>
-      <p><em> powered by passion, Rstudio, and too much coffee </em></p>
+      <h1> 67 </h1>
+      <p><em> Gros n'importe quoi on aime </em></p>
+      <button onclick = "document.body.classList.toggle('dark')"> Dark mode </button>
   </header>
 
   <!-- nav = navigation block, wraps links that move you around the site -->
   <nav>
     <a href = "#projects"> Projects </a> |
     <a href = "#about"> About </a> |
-    <a href = "#contact"> Send help </a>
+    <a href = "#contact"> Send help </a> |
+    <a href = "#trollomètre"> Trollomètre </a>
   </nav>
 
   <!-- main = the ONE primary content block -->
@@ -150,6 +191,13 @@
       
     </article>
 
+    <article id = "trollomètre" class = "card">
+      <h2> Trollomètre </h2>
+      <p> Click here: </p>
+      <button id = "trollBtn"> I am smarter than the average </button>
+      <p> Cumulative suffering: <strong id = "counter"> 0 </strong></p>
+    </article>
+
     <!-- aside = tangential content, related but not core -->
     <aside >
     <p> Fun fact: this box is an &lt;aside&gt;, technically "not the main point" -- much like most of my footnotes.</p>
@@ -161,6 +209,31 @@
     <footer id = "contact">
       <p> &copy; 2026 My Site -- built with HTML and happiness </p>
     </footer>
+
+    <!-- script = where JS logic lives. Placed at the END of body so the page load first -->
+    <script>
+      // getElementById = find the ONE element with that id
+      const btn = document.getElementById("trollBtn");
+      const counterDisplay = document.getElementById("counter");
+
+      let count = 0; // let = a variable that can change (vs const = fixed forever)
+
+      // addEventListener = when X happens, run this function
+      btn.addEventListener("click", function() {
+        count = count + 1;
+        counterDisplay.textContent = count; // textContent = swap the visible text
+
+        if (count == 5) {
+          counterDisplay.textContent = count + "(it's ok, breathe)";
+        } 
+        if (count == 10) {
+          counterDisplay.textContent = count + "(broooo get out of here)";
+        }
+        if (count >= 20) {
+          counterDisplay.textContent = count + "FOUND SOME FRIENDS BRO PLEASE";
+        }
+      });
+    </script>
 
 </body>
 </html>
