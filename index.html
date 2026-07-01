@@ -1,10 +1,8 @@
 <!DOCTYPE html>
-
 <html lang="fr"> <!-- start doc -->
-
 <head>
-  <meta charset="UTF-8" ; <!-- for special characters -->
-    Author: Simone> 
+  <meta charset="UTF-8"> ; <!-- for special characters -->
+  <meta name = "author" content = "Simone">
 
   <!-- appears in the navigacy outlet, not the page itself -->
   <title> simooooooooooooooooooooooooooooooooooooone </title>
@@ -68,6 +66,13 @@
       text-decoration: underline wavy;
     }
 
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220xp, 1fr));
+      gap = 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
     main {
       max-width: 700px;
       margin: 2rem auto; /* auto = centers the block horizontally */
@@ -81,9 +86,9 @@
       border-radius: 12px;
       padding:1.5rem;
       margin-bottom: 1.5rem;
-      box-shadow: 0 4px 10 px rgba(0,0,0,0.08); 
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08); 
       transition: 
-        background-color 1s;
+        background-color 1s, transform 0.2s, box-shadow 0.2s;
     }
 
     body.dark .card {
@@ -92,7 +97,7 @@
 
     /* hover = while mouse is over it, lift the card up and deepen the shadow */
     .card:hover {
-      transform:translateY(-6px);
+      transform:translateY(-60px);
       box-shadow: 0 8px 20px rgba(0,0,0,0.15);
     }
 
@@ -129,6 +134,21 @@
             color: #888;
             font-size: 0.9rem;
            }
+
+    .centered {
+      text-align: center;
+    }
+
+    #face {
+      font-family: "Counrier New", monospace;
+      font-size: 1.1rem;
+      display: inline-block;
+      transition: transform 0.3s;
+    }
+
+    #face:hover {
+      transform: rotate(-180deg) scale(1.1);
+    }
     
   </style>
 </head>
@@ -170,7 +190,7 @@
   </article>
 
     <h2> Current projects (test version) </h2>
-    <!- class = "grid" wraps the cards, each .card becomes one grid cell ->
+    <!-- class = "grid" wraps the cards, each .card becomes one grid cell -->
     <div class = "grid" id = "projects">
       <div class = "card">
         <h3> FIFA26 </h3>
@@ -224,8 +244,9 @@
     <p> Fun fact: this box is an &lt;aside&gt;, technically "not the main point" -- much like most of my footnotes.</p>
   </aside> 
 
-    <div id = "face" class = "centered" style = "padding-top: 222px">
-      ___:_:--.:;;____
+    <div id = "face" class = "centered" style = "padding-top: 2rem">
+      <pre>
+        ___:_:--.:;;____
       (  ~   ^          ))
       (  0  | 0         )) ?
       |  _  | _         /() ?
@@ -233,11 +254,13 @@
       |   (______)     /
       \____     _____/
            \_|_/
+      </pre>
+      <p> style = "font-size:0.85rem; color:#999; "> Niveau de nuisance : maximal ou quoi la team _</p>
 <\div>
     
   </main>
 
-  <! footer = bootom of the page >
+  <!-- footer = bootom of the page -->
     <footer id = "contact">
       <p> &copy; 2026 My Site -- built with HTML and happiness </p>
     </footer>
