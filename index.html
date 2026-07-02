@@ -1,320 +1,107 @@
 <!DOCTYPE html>
-<html lang="fr"> <!-- start doc -->
+<html lang="en">
 <head>
-  <meta charset="UTF-8"> ; <!-- for special characters -->
-  <meta name = "author" content = "Simone">
-
-  <title> simooooooooooooooooooooooooooooooooooooone </title>   <!-- navigacy outlet -->
-  <link rel = "icon" type = "image/png" href = "media/meta.png">
-
-  <!-- selector = "which elements does this apply to" -->
-  <style>
-    /* * = universal selector */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box; 
-    }
-    
-    /* element selector: targets ALL <body> tags */
-    body {
-      font-family: "Times New Roman", serif; /* TIMES NEW */
-      background-color: #FAF0E6; /* CREME */
-      color: #1e1e1e; /* BLACK */
-      line-height: 1.6; /* space between lines */
-      transition: 
-        background-color 0.3s, 
-        color 0.3s; /* smooth dark-mode switch */
-    }
-
-    /* body.dark = targets <body> ONLY when it also has class = "dark" */
-    body.dark {
-      background-color: #1e1e1e;
-      color: #ffffff;
-    }
-
-    header {
-      background-color: #1e1e1e; /* BLACK */
-      color: #ffffff; /* WHITE */
-      padding: 2rem;
-      text-align: center;
-    }
-
-    header img {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid #EED5B7;
-      margin-bottom: 0.5rem;
-    }
-
-    header h1 {
-      font-family: "Aptos", sans-serif;
-      font-size: 2.5rem;
-    }
-
-    header h2 {
-      font-family: "Aptos", sans-serif;
-      font-size: 1.5rem;
-    }
-
-    nav {
-      background-color: #FFE4C4; /* BEIGE COOL */
-      color: #EED5B7; /* BEIGE + FONCE */
-      padding: 0.75rem;
-      text-align: center;
-    }
-
-    /* a = targets every link. 
-       a:hover = targets a link ONLY while mouse is on it */
-    nav a {
-      color: #2b2b2b;
-      text-decoration: none;
-      font-weight: bold;
-      margin: 0 0.5rem;
-    }
-
-    nav a:hover {
-      text-decoration: underline;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.5rem;
-      margin-bottom: 1.5rem;
-    }
-
-    main {
-      max-width: 700px;
-      margin: 2rem auto; /* auto = centers the block horizontally */
-      padding: 0 1rem;
-    }
-
-    /* class sector: targets elements with class = "cards". Note the DOT. */
-    /* classes = reusable "tags" you assign */
-    .card {
-      background-color: white;
-      border-radius: 12px;
-      padding: 1.5rem;
-      margin-bottom: 1.5rem;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.08); 
-      transition: 
-        background-color 1s, transform 0.2s, box-shadow 0.2s;
-    }
-
-    body.dark .card {
-      background-color: #2a2a2a;
-    }
-
-    /* generic button style */
-    button {
-      background-color: #ffb703;
-      border: none;
-      border-radius: 8px;
-      padding: 0.6rem 1.2rem;
-      font-size: 1rem;
-      font-weight: bold;
-      cursor: pointer; /* hand icon on hover, signals "clickable" */
-      margin: 0.3rem;
-    }
-
-    button:hover {
-      background-color: #fb8500;
-    }
-
-    audio {
-      width: 50%;
-      margin-top: 0.5rem;
-    }
-    
-    aside {
-      background-color: #ffe8d6; 
-      border-left: 4px solid #ffb703;
-      padding: 1rem;
-      font-style: italic;
-    }
-
-    footer {text-align: center;
-            padding: 1.5rem;
-            color: #888;
-            font-size: 0.9rem;
-           }
-
-    .centered {
-      text-align: center;
-    }
-
-    #face {
-      font-family: "Courier New", monospace;
-      font-size: 1.1rem;
-      display: inline-block;
-      transition: transform 0.3s;
-    }
-
-    #face:hover {
-      transform: rotate(-180deg) scale(1.1);
-    }
-    
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Simone">
+    <title>SIMONE · capital & chaos</title>
+    <link rel="icon" type="image/png" href="media/meta.png">
+    <link rel="stylesheet" href="css/style.css">
 </head>
-  
-<body> <!-- what appears on the screen -->
-  <header>  <!-- header = top banner of the page -->
-      <img id="headerPic" src="header_light.png" alt="portrait photo">
+<body>
+    <div class="futuristic-grid"></div>
     
-      <!-- h1 = title level 1 (the biggest) -->
-      <h1> Simon Labarthe </h1>
-      <p><em> Personal website </em></p>
-      <button onclick = "toggleMode()"> Dark mode </button>
-  </header>
+    <header>
+        <div class="header-content">
+            <img id="headerPic" src="media/header_light.png" alt="Simone">
+            <h1>SIMONE LABARTHE</h1>
+            <div class="ticker">⟳ MARKET · DATA · CHAOS ⟳</div>
+            <button onclick="toggleMode()" class="cyber-btn">⟳ DARK</button>
+        </div>
+    </header>
 
-  <!-- nav = navigation block, wraps links that move you around the site -->
-  <nav>
-    <a href = "#projects"> Projects </a> |
-    <a href = "#about"> About </a> |
-    <a href = "#contact"> Send me help </a> |
-    <a href = "#trollomètre"> Trollomètre </a>
-  </nav>
+    <nav class="nav-grid">
+        <a href="index.html" class="active">⌂ HOME</a>
+        <a href="projects.html">◈ PROJECTS</a>
+        <a href="blog.html">✧ BLOG</a>
+        <a href="about.html">⚡ ABOUT</a>
+        <a href="contact.html">✉ CONTACT</a>
+    </nav>
 
-  <main> <!-- main = the ONE primary content block -->
-    <!-- article = a selft-contained chunk of content -->
-    <!-- id = unique name tag-->
-  <article id ="projects" class = "card">
-    <h2> Currend Projects </h2>
-    <!-- ul = unorderd list (bullets). ol = ordered list (numbers) -->
-    <!-- li = list item, one bullet -->
-    <ol> 
-      <li> World Cup 2026 match prediction pipeline </li>
-      <li> MID (Militarized Interstate Disputes) prediction with tidymodels </li>
-      <li> RDD on female mayors and violence in Brazil </li>
-    </ol>
-  </article>
+    <main>
+        <section class="hero">
+            <div class="glitch-text">
+                <h2>POLITICAL SCIENCE × DATA SCIENCE</h2>
+                <p>predicting chaos since 2024</p>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">47.3%</div>
+                    <div class="stat-label">PREDICTION ACCURACY</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">∞</div>
+                    <div class="stat-label">HOURS IN THE TRENCHES</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">🚀</div>
+                    <div class="stat-label">MOONSHOT PROJECTS</div>
+                </div>
+            </div>
+        </section>
 
-    <h2 style = "margin-bottom:1rem;"> Current projects (test version) </h2>
-    <!-- class = "grid" wraps the cards, each .card becomes one grid cell -->
-    <div class = "grid" id = "projects">
-      <div class = "card">
-        <h3> FIFA26 </h3>
-        <p> Elo ratings + predictions </p>
-      </div>
-      <div class = "card">
-        <h3> RDD Braziiiou </h3>
-        <p> Female mayors truc </p>
-      </div>
-    </div>
+        <div class="card-grid" id="projects">
+            <div class="card project-card">
+                <div class="card-glow"></div>
+                <h3>FIFA 2026 PREDICTOR</h3>
+                <p>Elo ratings + Monte Carlo simulations</p>
+                <div class="progress-bar"><div style="width:78%"></div></div>
+                <span class="tag">ACTIVE</span>
+            </div>
+            <div class="card project-card">
+                <div class="card-glow"></div>
+                <h3>RDD BRAZIL</h3>
+                <p>Female mayors & violence dynamics</p>
+                <div class="progress-bar"><div style="width:62%"></div></div>
+                <span class="tag">STALLED</span>
+            </div>
+            <div class="card project-card">
+                <div class="card-glow"></div>
+                <h3>MID PREDICTOR</h3>
+                <p>Militarized disputes with tidymodels</p>
+                <div class="progress-bar"><div style="width:45%"></div></div>
+                <span class="tag">EXPERIMENTAL</span>
+            </div>
+        </div>
 
-    <article id = "about" class = "card">
-      <h2> About </h2>
-         <!-- p = paragraph, the default block for plain text -->
-          <p> Welcome. I am a political science student working on statistics, conflict, and football prediction models. </p>
-       
-        <!-- a = anchor, makes a clickable link. -->
-        <!-- href = hypertext reference = destination -->
-        <p> 
-          Find my work on <a href = "https://github.com"> Github </a>. 
-        </p>
-      <audio controls src = "media/music.mp3">
-        Your browser sucks.
-      </audio>
-    
-        <p>
-          Status: <strong> actively building </strong>, updates coming <em> soon </em>
-        </p>
-    </article>
+        <div class="troll-section card">
+            <h2>⟳ TROLLOMETER ⟳</h2>
+            <p>click to increase intelligence</p>
+            <button id="trollBtn" class="cyber-btn">⬡ ACTIVATE BRAIN</button>
+            <p>IQ: <strong id="counter">0</strong></p>
+            <div class="troll-progress"><div id="trollBar" style="width:0%"></div></div>
+        </div>
 
-    <article id = "trollomètre" class = "card">
-      <h2> Trollomètre </h2>
-      <p> Click here: </p>
-      <button id = "trollBtn"> I want to be smart </button>
-      <p> Your IQ: <strong id = "counter"> 0 </strong></p>
-    </article>
+        <aside class="ascii-art">
+            <pre>
+        ╔═══════════════════════╗
+        ║   INFINITE HORSE     ║
+        ║   (╯°□°）╯︵ ┻━┻      ║
+        ╚═══════════════════════╝
+            </pre>
+        </aside>
+    </main>
 
-    <!-- aside = tangential content, related but not core -->
-    <aside >
-    <p> Fun fact: this box is an &lt;aside&gt;, technically "not the main point" -- much like most of my footnotes.</p>
-  </aside> 
-
-    <div id = "face" class = "centered" style = "padding-top: 2rem">
-      <pre>
-           JLL_LJ||/!]]          <-- (hairs)
-        ~LLJL~~~~~~~~~~L~~~
-      (  ~   ^          ))
-      (  0  | 0         )) ?
-      |  _  | _         /() ?
-      |     |          //()!   
-      |   (______)     /!!LJJ
-      \____     _____/  J  LL
-           \_|_/
-      </pre>
-      <p style = "font-size:0.85rem; color:#999; "> I look like this (approximatively) </p>
-    </div>
-    
-  </main>
-
-  <!-- footer = bootom of the page -->
-    <footer id = "contact">
-      <p> &copy; 2026 By Simone </p>
+    <footer>
+        <p>© 2026 SIMONE · BUILT WITH ☕ & CHAOS</p>
+        <div class="footer-links">
+            <a href="https://github.com">⌨ GITHUB</a>
+            <a href="#">⬡ TWITTER</a>
+            <a href="#">✧ LINKEDIN</a>
+        </div>
     </footer>
 
-<script>
-  // === 1) CHANGING PORTRAIT ===
-  const headerPic = document.getElementById("headerPic");
-
-  function toggleMode() {
-    document.body.classList.toggle("dark");
-    const isDark = document.body.classList.contains("dark");
-    headerPic.src = isDark ? "header_dark.png" : "header_light.png";
-  }
-
-
-  // === 2) CHAOTIC MOVES ===
-  const cards = document.querySelectorAll(".card"); // catch all elements that match
-
-  function randomOffset() {
-    const magnitude = Math.random() * 45 + 5; 
-    const sign = Math.random() < 0.5 ? -1 : 1;
-    return magnitude * sign;
-  }
-
-  cards.forEach(function(card) {
-    card.addEventListener("mouseenter", function() {
-      const x = randomOffset();
-      const y = randomOffset();
-      card.style.transform = "translate(" + x + "px, " + y + "px)";
-    });
-
-    card.addEventListener("mouseleave", function() {
-      card.style.transform = "translate(0, 0)";
-    });
-  });
-
-  
-      // === 3) Button ===
-      const btn = document.getElementById("trollBtn");
-      const counterDisplay = document.getElementById("counter");
-
-      let count = 0; // let = a variable that can change (vs const = fixed forever)
-
-      // addEventListener = when X happens, run this function
-      btn.addEventListener("click", function() {
-        count = count + 1;
-        counterDisplay.textContent = count; // textContent = swap the visible text
-
-        if (count == 5) {
-          counterDisplay.textContent = count + "(it's ok, breathe)";
-        } 
-        if (count == 10) {
-          counterDisplay.textContent = count + "(broooo get out of here)";
-        }
-        if (count == 20) {
-          counterDisplay.textContent = count + "FOUND SOME FRIENDS BRO PLEASE";
-        }
-        if (count == 67) {
-          counterDisplay.textContent = count + " SIX SEVEN SIX SEVEN TASTY CROUTSY";
-        }
-      });
-    </script>
+    <script src="js/main.js"></script>
 </body>
 </html>
