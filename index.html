@@ -5,7 +5,7 @@
   <meta name = "author" content = "Simone">
 
   <title> simooooooooooooooooooooooooooooooooooooone </title>   <!-- navigacy outlet -->
-  <link rel = "icon" type = "image/png" href = "media/header_light.png">
+  <link rel = "icon" type = "image/png" href = "media/meta.png">
 
   <!-- selector = "which elements does this apply to" -->
   <style>
@@ -45,7 +45,7 @@
       height: 120px;
       border-radius: 50%;
       object-fit: cover;
-      border: 3xp solid #EED5B7;
+      border: 3px solid #EED5B7;
       margin-bottom: 0.5rem;
     }
 
@@ -81,7 +81,7 @@
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220xp, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 1.5rem;
       margin-bottom: 1.5rem;
     }
@@ -162,7 +162,7 @@
   
 <body> <!-- what appears on the screen -->
   <header>  <!-- header = top banner of the page -->
-      <img src = "media/header_light.png" alt = "portrait photo">
+      <img id="headerPic" src="header_light.png" alt="portrait photo">
     
       <!-- h1 = title level 1 (the biggest) -->
       <h1> Simon Labarthe </h1>
@@ -192,7 +192,7 @@
     </ol>
   </article>
 
-    <h2 syle = "margin-bottom:1rem;> Current projects (test version) </h2>
+    <h2 style = "margin-bottom:1rem;"> Current projects (test version) </h2>
     <!-- class = "grid" wraps the cards, each .card becomes one grid cell -->
     <div class = "grid" id = "projects">
       <div class = "card">
@@ -263,14 +263,14 @@
   const headerPic = document.getElementById("headerPic");
 
   function toggleMode() {
-    document.body.classlist.toggle("dark");
+    document.body.classList.toggle("dark");
     const isDark = document.body.classList.contains("dark");
     headerPic.src = isDark ? "header_dark.png" : "header_light.png";
   }
 
 
   // === 2) CHAOTIC MOVES ===
-  const cards = document.querySelectorAll(".cards"); // catch all elements that match
+  const cards = document.querySelectorAll(".card"); // catch all elements that match
 
   function randomOffset() {
     const magnitude = Math.random() * 45 + 5; 
