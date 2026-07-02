@@ -4,9 +4,8 @@
   <meta charset="UTF-8"> ; <!-- for special characters -->
   <meta name = "author" content = "Simone">
 
-  <!-- appears in the navigacy outlet, not the page itself -->
-  <title> simooooooooooooooooooooooooooooooooooooone </title>
-  <link rel = "icon" type = "image/png" href = "meta.png">
+  <title> simooooooooooooooooooooooooooooooooooooone </title>   <!-- navigacy outlet -->
+  <link rel = "icon" type = "image/png" href = "header_light.png">
 
   <!-- selector = "which elements does this apply to" -->
   <style>
@@ -41,9 +40,23 @@
       text-align: center;
     }
 
+    header img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3xp solid #EED5B7;
+      margin-bottom: 0.5rem;
+    }
+
     header h1 {
       font-family: "Aptos", sans-serif;
       font-size: 2.5rem;
+    }
+
+    header h2 {
+      font-family: "Aptos", sans-serif;
+      font-size: 1.5rem;
     }
 
     nav {
@@ -63,13 +76,13 @@
     }
 
     nav a:hover {
-      text-decoration: underline wavy;
+      text-decoration: underline;
     }
 
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220xp, 1fr));
-      gap = 1.5rem;
+      gap: 1.5rem;
       margin-bottom: 1.5rem;
     }
 
@@ -84,7 +97,7 @@
     .card {
       background-color: white;
       border-radius: 12px;
-      padding:1.5rem;
+      padding: 1.5rem;
       margin-bottom: 1.5rem;
       box-shadow: 0 4px 10px rgba(0,0,0,0.08); 
       transition: 
@@ -93,12 +106,6 @@
 
     body.dark .card {
       background-color: #2a2a2a;
-    }
-
-    /* hover = while mouse is over it, lift the card up and deepen the shadow */
-    .card:hover {
-      transform:translateY(-60px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
     }
 
     /* generic button style */
@@ -118,7 +125,7 @@
     }
 
     audio {
-      width: 100%;
+      width: 50%;
       margin-top: 0.5rem;
     }
     
@@ -140,7 +147,7 @@
     }
 
     #face {
-      font-family: "Counrier New", monospace;
+      font-family: "Courier New", monospace;
       font-size: 1.1rem;
       display: inline-block;
       transition: transform 0.3s;
@@ -153,31 +160,27 @@
   </style>
 </head>
   
-<!-- what appears on the screen -->
-<body>
-  <!-- header = top banner of the page -->
-  <header>
-      <img src = "header.jpg" alt = "portrait photo">
+<body> <!-- what appears on the screen -->
+  <header>  <!-- header = top banner of the page -->
+      <img src = "header_light.png" alt = "portrait photo">
     
       <!-- h1 = title level 1 (the biggest) -->
-      <h1> My Stupid Site </h1>
-      <p><em> Gros n'importe quoi on aime </em></p>
-      <button onclick = "document.body.classList.toggle('dark')"> Dark mode </button>
+      <h1> Simon Labarthe </h1>
+      <p><em> Personal website </em></p>
+      <button onclick = "toggleMode()"> Dark mode </button>
   </header>
 
   <!-- nav = navigation block, wraps links that move you around the site -->
   <nav>
     <a href = "#projects"> Projects </a> |
     <a href = "#about"> About </a> |
-    <a href = "#contact"> Send help </a> |
+    <a href = "#contact"> Send me help </a> |
     <a href = "#trollomètre"> Trollomètre </a>
   </nav>
 
-  <!-- main = the ONE primary content block -->
-  <main>
+  <main> <!-- main = the ONE primary content block -->
     <!-- article = a selft-contained chunk of content -->
     <!-- id = unique name tag-->
-  <!-- h2 = title level 2 -->
   <article id ="projects" class = "card">
     <h2> Currend Projects </h2>
     <!-- ul = unorderd list (bullets). ol = ordered list (numbers) -->
@@ -189,7 +192,7 @@
     </ol>
   </article>
 
-    <h2> Current projects (test version) </h2>
+    <h2 syle = "margin-bottom:1rem;> Current projects (test version) </h2>
     <!-- class = "grid" wraps the cards, each .card becomes one grid cell -->
     <div class = "grid" id = "projects">
       <div class = "card">
@@ -205,11 +208,9 @@
     <article id = "about" class = "card">
       <h2> About </h2>
          <!-- p = paragraph, the default block for plain text -->
-          <p> 
-            Welcome. I am a political science student working on statistics, conflict, and football prediction models. 
-          </p>
+          <p> Welcome. I am a political science student working on statistics, conflict, and football prediction models. </p>
+       
         <!-- a = anchor, makes a clickable link. -->
-      
         <!-- href = hypertext reference = destination -->
         <p> 
           Find my work on <a href = "https://github.com"> Github </a>. 
@@ -217,26 +218,17 @@
       <audio controls src = "music.mp3">
         Your browser sucks.
       </audio>
-      
-        <!-- img = image
-       src = source (file path or URL)
-       alt = text shown if image fails to load -->
-        <img src="dog.png" alt = "placeholder graph">
-      
-        <!-- strong = bold
-             em = italic -->
+    
         <p>
           Status: <strong> actively building </strong>, updates coming <em> soon </em>
         </p>
-  
-      
     </article>
 
     <article id = "trollomètre" class = "card">
       <h2> Trollomètre </h2>
       <p> Click here: </p>
-      <button id = "trollBtn"> I am smarter than the average </button>
-      <p> Cumulative suffering: <strong id = "counter"> 0 </strong></p>
+      <button id = "trollBtn"> I want to be smart </button>
+      <p> Your IQ: <strong id = "counter"> 0 </strong></p>
     </article>
 
     <!-- aside = tangential content, related but not core -->
@@ -246,28 +238,60 @@
 
     <div id = "face" class = "centered" style = "padding-top: 2rem">
       <pre>
-        ___:_:--.:;;____
+           JLL_LJ||/!]]          <-- (hairs)
+        ~LLJL~~~~~~~~~~L~~~
       (  ~   ^          ))
       (  0  | 0         )) ?
       |  _  | _         /() ?
-      |     |          //()!
-      |   (______)     /
-      \____     _____/
+      |     |          //()!   
+      |   (______)     /!!LJJ
+      \____     _____/  J  LL
            \_|_/
       </pre>
-      <p> style = "font-size:0.85rem; color:#999; "> Niveau de nuisance : maximal ou quoi la team _</p>
-<\div>
+      <p style = "font-size:0.85rem; color:#999; "> I look like this (approximatively) </p>
+    </div>
     
   </main>
 
   <!-- footer = bootom of the page -->
     <footer id = "contact">
-      <p> &copy; 2026 My Site -- built with HTML and happiness </p>
+      <p> &copy; 2026 By Simone </p>
     </footer>
 
-    <!-- script = where JS logic lives. Placed at the END of body so the page load first -->
-    <script>
-      // getElementById = find the ONE element with that id
+<script>
+  // === 1) CHANGING PORTRAIT ===
+  const headerPic = document.getElementById("headerPic");
+
+  function toggleMode() {
+    document.body.classlist.toggle("dark");
+    const isDark = document.body.classList.contains("dark");
+    headerPic.src = isDark ? "header_dark.png" : "header_light.png";
+  }
+
+
+  // === 2) CHAOTIC MOVES ===
+  const cards = document.querySelectorAll(".cards"); // catch all elements that match
+
+  function randomOffset() {
+    const magnitude = Math.random() * 45 + 5; 
+    const sign = Math.random() < 0.5 ? -1 : 1;
+    return magnitude * sign;
+  }
+
+  cards.forEach(function(card) {
+    card.addEventListener("mouseenter", function() {
+      const x = randomOffset();
+      const y = randomOffset();
+      card.style.transform = "translate(" + x + "px, " + y + "px)";
+    });
+
+    card.addEventListener("mouseleave", function() {
+      card.style.transform = "translate(0, 0)";
+    });
+  });
+
+  
+      // === 3) Button ===
       const btn = document.getElementById("trollBtn");
       const counterDisplay = document.getElementById("counter");
 
@@ -292,6 +316,5 @@
         }
       });
     </script>
-
 </body>
 </html>
