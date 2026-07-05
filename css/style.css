@@ -1,0 +1,891 @@
+/* ==========================================================================
+   PORTFOLIO STYLE 
+   ==========================================================================
+   DESIGN PHILOSOPHY:
+   - Editorial aesthetic with Bodoni serif typography
+   - Glassmorphism effects for modern, premium feel
+   - Cryptic accents (glitch, red/green channel split on hover)
+   - Light/Dark mode with separate ambient textures
+   - Smooth animations and transitions throughout
+   ========================================================================== */
+
+/* ----- 1. IMPORTS ----- */
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,700;1,6..96,400&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+/* ----- 2. RESET & BASE ----- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ----- 3. CSS VARIABLES (Light Mode Default) ----- */
+:root {
+    /* Backgrounds */
+    --wh: #ffffff;
+    --wh-alt: #ffffff;
+    --wh-card: #ffffff;
+    
+    /* Text colors */
+    --ink: #1a1917;
+    --ink-dim: #6b6a66;
+    
+    /* Borders & rules */
+    --rule: rgba(26, 25, 23, 0.1);
+    --rule-strong: rgba(26, 25, 23, 0.25);
+    
+    /* Accent colors */
+    --red: #d1010b;
+    --red-dim: rgba(197, 0, 10, 0.5);
+    --green: #174127;
+    --green-dim: rgba(47, 107, 69, 0.08);
+    
+    /* Glitch colors (same as accents) */
+    --glitch-red: #a3161d;
+    --glitch-green: #2f6b45;
+    
+    /* Font families */
+    --serif: 'Bodoni Moda', serif;
+    --sans: 'Inter', sans-serif;
+    --mono: 'IBM Plex Mono', monospace;
+}
+
+/* ----- 4. DARK MODE OVERRIDES ----- */
+body.dark {
+    --wh: #0c0c0b;
+    --wh-alt: #141412;
+    --wh-card: #1a1a18;
+    --ink: #f3f1e8;
+    --ink-dim: #918e82;
+    --rule: rgba(243, 241, 232, 0.08);
+    --rule-strong: rgba(243, 241, 232, 0.2);
+    --red: #c41a24;
+    --red-dim: rgba(196, 26, 36, 0.12);
+    --green: #3a7a52;
+    --green-dim: rgba(58, 122, 82, 0.12);
+    --glitch-red: #c41a24;
+    --glitch-green: #3a7a52;
+}
+
+/* ----- 5. BODY STYLES ----- */
+body {
+    font-family: var(--sans);
+    background: var(--wh);
+    color: var(--ink);
+    line-height: 1.6;
+    min-height: 100vh;
+    font-size: 16px;
+    transition: background 0.4s ease, color 0.4s ease;
+}
+
+/* Text selection color */
+::selection {
+    background: var(--red);
+    color: var(--wh);
+}
+
+/* Custom scrollbar - minimal & elegant */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--wh); }
+::-webkit-scrollbar-thumb { background: var(--ink-dim); }
+::-webkit-scrollbar-thumb:hover { background: var(--red); }
+
+/* ----- 6. AMBIENT BACKGROUND (Paper Texture) ----- */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* SVG pattern creates subtle dot texture */
+    background-image: 
+        url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none; /* Allows clicking through */
+    z-index: 0;
+    opacity: 0.3;
+}
+
+/* Dark mode uses white dots instead of black */
+body.dark::before {
+    background-image: 
+        url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* ----- 7. GLITCH TEXT (Hover-only effect) ----- */
+.glitch-text {
+    position: relative;
+    display: inline-block;
+}
+
+/* Pseudo-elements create red/green channel split on hover */
+.glitch-text::before,
+.glitch-text::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.glitch-text:hover::before {
+    color: var(--glitch-red);
+    opacity: 0.6;
+    transform: translate(-2px, 1px);
+    animation: glitch-flicker 0.25s steps(2, end) 2;
+}
+
+.glitch-text:hover::after {
+    color: var(--glitch-green);
+    opacity: 0.6;
+    transform: translate(2px, -1px);
+    animation: glitch-flicker 0.25s steps(2, end) 2 reverse;
+}
+
+@keyframes glitch-flicker {
+    0%, 100% { transform: translate(-2px, 1px); }
+    50% { transform: translate(-4px, -1px); }
+}
+
+/* ----- 8. HEADER ----- */
+header {
+    background: var(--wh);
+    padding: 3rem 1rem 2.5rem;
+    text-align: center;
+    border-bottom: 1px solid var(--rule);
+    position: relative;
+    transition: background 0.4s ease, border-color 0.4s ease;
+    overflow: visible; /* Allows background name to extend */
+}
+
+/* Small smiley face in top-left corner */
+header::before {
+    content: ':)';
+    position: absolute;
+    top: 14px;
+    left: 20px;
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    color: var(--ink-dim);
+}
+
+.header-content {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1;
+}
+
+/* ----- 9. BIG BACKGROUND NAME (Parallax) ----- */
+.header-background-name {
+    position: absolute;
+    top: 50%;
+    left: 90%;
+    transform: translate(-50%, -50%);
+    font-family: var(--serif);
+    font-size: 12rem;
+    font-weight: 700;
+    color: var(--red);
+    opacity: 0.08;
+    letter-spacing: 0.05em;
+    pointer-events: none; /* Can't click through */
+    white-space: nowrap;
+    z-index: -1;
+    text-transform: uppercase;
+    line-height: 1;
+    transition: opacity 0.4s ease, color 0.4s ease;
+    will-change: transform; /* Performance optimization */
+}
+
+body.dark .header-background-name {
+    opacity: 0.1;
+}
+
+/* Ghost layer for depth */
+.header-background-name::after {
+    content: 'SIMON LABARTHE';
+    position: absolute;
+    top: 2px;
+    left: 3px;
+    color: var(--green);
+    opacity: 0.4;
+    z-index: -1;
+    filter: blur(2px);
+}
+
+/* ----- 10. PROFILE IMAGE ----- */
+#profilePic {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid transparent;
+    margin-bottom: 1rem;
+    filter: grayscale(100%);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
+}
+
+/* Hover: color, scale, border, pulse animation */
+#profilePic:hover {
+    filter: grayscale(0%);
+    border-color: var(--red);
+    transform: scale(1.15);
+    box-shadow: 0 0 30px rgba(163, 22, 29, 0.15);
+    animation: pulse-border 2s ease-in-out infinite;
+}
+
+@keyframes pulse-border {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(163, 22, 29, 0.1);
+        border-color: var(--red);
+    }
+    50% {
+        box-shadow: 0 0 40px rgba(163, 22, 29, 0.25);
+        border-color: #c41a24;
+    }
+}
+
+/* Dark mode pulse */
+body.dark #profilePic:hover {
+    animation: pulse-border-dark 2s ease-in-out infinite;
+}
+
+@keyframes pulse-border-dark {
+    0%, 100% {
+        box-shadow: 0 0 30px rgba(196, 26, 36, 0.15);
+        border-color: var(--red);
+    }
+    50% {
+        box-shadow: 0 0 50px rgba(196, 26, 36, 0.3);
+        border-color: #d41a24;
+    }
+}
+
+/* Title moves down when profile pic is hovered */
+#profilePic:hover ~ h1 {
+    transform: translateY(8px);
+    color: var(--red);
+}
+
+#profilePic:hover ~ .ticker {
+    transform: translateY(8px);
+    opacity: 0.7;
+}
+
+/* ----- 11. HEADER TYPOGRAPHY ----- */
+header h1 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 3.4rem;
+    letter-spacing: 0.01em;
+    color: var(--ink);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 10;
+}
+
+.ticker {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    color: var(--ink-dim);
+    margin-top: 0.8rem;
+    margin-bottom:-1.5rem;
+    display: inline-block;
+    border-top: 1px solid var(--rule);
+    padding-top: 0.6rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ----- 12. NAVIGATION (Sticky) ----- */
+.nav-grid {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.9rem;
+    background: var(--wh);
+    border-bottom: 1px solid var(--rule);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    flex-wrap: wrap;
+    transition: background 0.4s ease, border-color 0.4s ease;
+}
+
+.nav-grid a {
+    color: var(--ink-dim);
+    text-decoration: none;
+    padding: 0.4rem 1rem;
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: color 0.2s ease, border-color 0.2s ease;
+    border-bottom: 1px solid transparent;
+}
+
+.nav-grid a:hover,
+.nav-grid a.active {
+    color: var(--ink);
+    border-bottom-color: var(--red);
+}
+
+/* ----- 13. MAIN CONTENT ----- */
+main {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 0px;
+    position: relative;
+    z-index: 1;
+}
+
+/* ----- 14. HERO SECTION ----- */
+.hero {
+    text-align: center;
+    margin: 3.5rem 0;
+    padding: 2.5rem 1rem;
+    border: 1px solid var(--rule);
+    position: relative;
+    transition: border-color 0.4s ease;
+    border-radius: 16px;
+}
+
+.hero::before {
+    content: '01';
+    position: absolute;
+    top: 10px;
+    left: 16px;
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    color: var(--green);
+    transition: color 0.4s ease;
+}
+
+.glitch-text h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-style: italic;
+    font-size: 2.3rem;
+    letter-spacing: 0.01em;
+    margin-bottom: 0.6rem;
+}
+
+.glitch-text p {
+    font-family: var(--sans);
+    color: var(--ink-dim);
+    font-size: 1.05rem;
+    max-width: 46ch;
+    margin: 0 auto;
+    transition: color 0.4s ease;
+}
+
+/* ----- 15. STATS GRID ----- */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    margin-top: 2rem;
+    transition: background 0.4s ease, border-color 0.4s ease;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.stat-card {
+    padding: 1.6rem 1.2rem;
+    background: var(--wh);
+    text-align: center;
+    transition: background 0.2s ease;
+}
+
+.stat-card:hover {
+    background: var(--wh-alt);
+}
+
+.stat-number {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 2.4rem;
+    color: var(--ink);
+    transition: color 0.4s ease;
+}
+
+.stat-label {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    margin-top: 0.3rem;
+    transition: color 0.4s ease;
+}
+
+/* ----- 16. GLASSMORPHISM CARDS ----- */
+.card {
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1.6rem;
+    margin-bottom: 1.4rem;
+    position: relative;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 16px;
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.04),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* Reflection effect - light sweep */
+.card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+        circle at 30% 30%,
+        rgba(255, 255, 255, 0.1) 0%,
+        transparent 70%
+    );
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+/* Shine effect - moving highlight */
+.card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.08),
+        transparent
+    );
+    transition: left 0.8s ease;
+    pointer-events: none;
+}
+
+.card:hover::before {
+    opacity: 1;
+}
+
+.card:hover::after {
+    left: 100%;
+}
+
+.card:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 
+        0 12px 48px rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    transform: translateY(-3px);
+}
+
+.card:not(.project-card) {
+    transition: transform 0.15s ease, border-color 0.3s ease, background 0.3s ease;
+}
+
+/* Dark mode glass */
+body.dark .card {
+    background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 255, 255, 0.05);
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+body.dark .card::before {
+    background: radial-gradient(
+        circle at 30% 30%,
+        rgba(255, 255, 255, 0.05) 0%,
+        transparent 70%
+    );
+}
+
+body.dark .card::after {
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.04),
+        transparent
+    );
+}
+
+body.dark .card:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 
+        0 12px 48px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* Data-type label in top-right corner */
+.card::before {
+    content: attr(data-type);
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    transition: color 0.4s ease;
+}
+
+/* ----- 17. PROJECT CARDS (Grid) ----- */
+.card-grid {
+    padding: 0px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.4rem;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+    perspective: 1000px;
+    overflow: visible; /* for sliding effect */
+}
+
+/* ----- 18. CARD REVEAL ON SCROLL ----- */
+.project-card {
+    padding: 20px;
+    border-left: 3px solid rgba(163, 22, 29, 0.3);
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    will-change: transform, opacity;
+    
+    /* Initial state: invisible & slightly offset */
+    opacity: 0;
+    transform: translateX(150px) scale(0.95);
+    filter: blur(4px);
+}
+
+.project-card:hover {
+    transform: translate(var(--goofy-x, 0px), var(--goofy-y, 0px)) scale(1.02);
+    border-left-color:var(--red);
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.12);
+}
+
+/* Visible state when scrolled into view */
+.project-card.visible {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    filter: blur(0);
+}
+
+/* Staggered delays for each card */
+.project-card:nth-child(1) { transition-delay: 0s; }
+.project-card:nth-child(2) { transition-delay: 0.15s; }
+.project-card:nth-child(3) { transition-delay: 0.3s; }
+
+/* Different entrance directions */
+.project-card:nth-child(1) { transform: translateX(200px) scale(0.85) rotate(2deg); }
+.project-card:nth-child(2) { transform: translateY(150px) scale(0.9) rotate(-1deg); }
+.project-card:nth-child(3) { transform: translateX(250px) scale(0.8) rotate(3deg); }
+
+.project-card.visible:nth-child(1) { transform: translateX(0) scale(1) rotate(0deg); }
+.project-card.visible:nth-child(2) { transform: translateY(0) scale(1) rotate(0deg); }
+.project-card.visible:nth-child(3) { transform: translateX(0) scale(1) rotate(0deg); }
+
+/* When cards exit viewport (scroll past) - slide to left and fade */
+.project-card.visible-exit {
+    opacity: 0;
+    transform: translateX(-150px) scale(0.85);
+    filter: blur(2px);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Project card content */
+.project-card h3 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 1.5rem;
+    margin-bottom: 0.4rem;
+    color: var(--ink);
+    transition: color 0.4s ease;
+}
+
+.project-card p {
+    color: var(--ink-dim);
+    font-size: 0.92rem;
+    transition: color 0.4s ease;
+}
+
+/* ----- 19. PROGRESS BARS ----- */
+.progress-bar {
+    height: 2px;
+    background: var(--rule);
+    margin: 1rem 0;
+    overflow: hidden;
+    transition: background 0.4s ease;
+    border-radius: 2px;
+}
+
+.progress-bar div {
+    height: 100%;
+    background: var(--green);
+    transition: background 0.4s ease, width 1s ease;
+}
+
+/* ----- 20. TAGS ----- */
+.tag {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.04em;
+    padding: 0.15rem 0.6rem;
+    border: 1px solid var(--rule-strong);
+    color: var(--ink-dim);
+    margin: 0.2rem 0.3rem 0.2rem 0;
+    transition: color 0.4s ease, border-color 0.4s ease;
+    border-radius: 4px;
+}
+
+.tag.active {
+    border-color: var(--red);
+    color: var(--red);
+}
+
+/* ----- 21. TROLLOMETER (Unserious Zone) ----- */
+.troll-section {
+    text-align: center;
+    border: 1px solid var(--green-dim);
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    position: relative;
+    padding: 1.6rem;
+    transition: all 0.4s ease;
+    border-radius: 20px;
+    box-shadow: 
+        0 4px 24px rgba(0, 0, 0, 0.04),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+body.dark .troll-section {
+    background: rgba(255, 255, 255, 0.02);
+    border-color: rgba(58, 122, 82, 0.12);
+}
+
+.troll-section::before {
+    content: '// UNSERIOUS ZONE';
+    position: absolute;
+    top: 10px;
+    right: 14px;
+    font-family: var(--mono);
+    font-size: 0.55rem;
+    color: var(--green);
+    letter-spacing: 0.06em;
+    transition: color 0.4s ease;
+}
+
+.troll-progress {
+    height: 2px;
+    background: var(--rule);
+    margin-top: 1rem;
+    overflow: hidden;
+    transition: background 0.4s ease;
+    border-radius: 2px;
+}
+
+.troll-progress div {
+    height: 100%;
+    background: var(--red);
+    transition: background 0.4s ease, width 0.5s ease;
+}
+
+/* ----- 22. BUTTONS (Cyber Style) ----- */
+.cyber-btn {
+    background: transparent;
+    border: 1px solid var(--ink);
+    color: var(--ink);
+    padding: 0.6rem 1.6rem;
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 4px;
+}
+
+.cyber-btn:hover {
+    background: var(--ink);
+    color: var(--wh);
+}
+
+.cyber-btn.small {
+    padding: 0.25rem 1rem;
+    font-size: 0.7rem;
+}
+
+/* ----- 23. DARK MODE TOGGLE (Floating Button) ----- */
+.mode-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999;
+    background: var(--wh-card);
+    border: 1px solid var(--rule);
+    border-radius: 50%;
+    width: 56px;
+    height: 56px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    padding: 4px;
+    overflow: hidden;
+}
+
+.mode-toggle:hover {
+    border-color: var(--red);
+    transform: scale(1.05);
+    box-shadow: 0 4px 20px rgba(163, 22, 29, 0.15);
+}
+
+body.dark .mode-toggle {
+    box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+}
+
+#toggleIcon {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    transition: all 0.4s ease;
+    filter: grayscale(100%);
+}
+
+#toggleIcon:hover {
+    filter: grayscale(0%);
+}
+
+body:not(.dark) #toggleIcon {
+    filter: grayscale(100%) brightness(1);
+}
+
+body.dark #toggleIcon {
+    filter: grayscale(100%) brightness(0.8);
+}
+
+body.dark .project-card:hover {
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.3);
+}
+
+/* Hide old toggle styles */
+.mode-toggle-btn { display: none; }
+.mode-toggle .sun,
+.mode-toggle .moon { display: none; }
+
+/* ----- 24. ASCII ART ----- */
+.ascii-art {
+    text-align: center;
+    padding: 0.8rem;
+    border: none;
+    opacity: 0.25;
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    color: var(--green);
+    margin: 1.5rem 0;
+    transition: opacity 0.3s ease, color 0.4s ease;
+}
+
+.ascii-art:hover {
+    opacity: 0.6;
+}
+
+/* ----- 25. FOOTER ----- */
+footer {
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    color: var(--ink-dim);
+    border-top: 1px solid var(--rule);
+    padding-top: 1em;
+    padding-bottom: 1em;
+    transition: color 0.4s ease, border-color 0.4s ease;
+}
+
+.footer-links {
+    margin-top: 0.6rem;
+    display: flex;
+    justify-content: center;
+    gap: 1.4rem;
+    flex-wrap: wrap;
+}
+
+.footer-links a {
+    color: var(--ink-dim);
+    text-decoration: none;
+    font-size: 0.65rem;
+    transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+    color: var(--red);
+}
+
+/* ----- 26. FACE (ASCII art easter egg) ----- */
+
+.centered {
+    position: absolute;
+    left:50%;
+}
+
+#face:hover {
+    transform: rotate(-180deg) scale(1.1);
+}
+
+/* ----- 27. RESPONSIVE DESIGN ----- */
+@media (max-width: 768px) {
+    header h1 { font-size: 2.3rem; }
+    header::before { font-size: 0.5rem; left: 10px; }
+    .nav-grid a { padding: 0.35rem 0.7rem; font-size: 0.7rem; }
+    .stats-grid { grid-template-columns: 1fr; }
+    .card-grid { grid-template-columns: 1fr; }
+    .glitch-text h2 { font-size: 1.7rem; }
+    .mode-toggle { bottom: 15px; right: 15px; width: 48px; height: 48px; }
+    .header-background-name { 
+        font-size: 6rem; 
+        letter-spacing: 0.01em; 
+    }
+    .project-card:nth-child(1),
+    .project-card:nth-child(2), 
+    .project-card:nth-child(3) {
+        transform: translateX(100px) scale(0.9);
+    }
+}
+
+@media (max-width: 480px) {
+    .header-background-name { font-size: 4rem; letter-spacing: 0.02em; }
+}
+
+textarea {
+    width: 43em;
+    height:15em;
+}
