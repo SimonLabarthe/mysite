@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Simon Labarthe">
+    <title>Simooooooooooooooooooooooooooooooooooooone</title>
+    <link rel="icon" type="image/png" href="media/meta.png">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <div class="header-content" style="position: relative; z-index: 1; min-height: 100px;">            
+            <h1>CONTACT</h1>
+        </div>
+    </header>
+
+    <nav class="nav-grid">
+        <a href="index.html" > Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="about.html">About me</a>
+        <a href="contact.html" class="active">Send me help</a>
+    </nav>
+
+    <main>
+        <div class="card">
+            <h2>REACH OUT</h2>
+            <p>I'm always down to talk politics, statistics, french rap, or psychological advices.</p>
+            <p>Please take me in PhD pleaaaaaase</p>
+            
+            <div class="contact-info">
+                <div> <a href="mailto:simon.labarthe@outlook.com">e-mail</a></div>
+                <div> <a href="https://www.linkedin.com/in/simon-e-labarthe/" target="_BLANK">Linkedin</a></div>
+                <div> <a href="https://github.com/SimonLabarthe" target="_BLANK">Github</a></div>
+            </div>
+
+            <form id="contactForm" class="contact-form" action="php/traitement.php" method="POST">
+                <fieldset>
+                    <legend>General informations</legend>
+                    <input type="text" name="name" placeholder="NAME" required> <br></br>
+                    <input type="email" name="email" placeholder="EMAIL" required> <br></br>
+                </fieldset>
+                <fieldset>
+                    <legend>Your voice matters!</legend>
+                    <textarea name="message" placeholder="MESSAGE" rows="4" required></textarea>
+                </fieldset>
+                <button type="submit" class="cyber-btn">SEND</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p> © 2026 By Simone </p>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
