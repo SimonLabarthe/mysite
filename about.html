@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,41 +8,68 @@
     <title>Simooooooooooooooooooooooooooooooooooooone</title>
     <link rel="icon" type="image/png" href="media/meta.png">
     <link rel="stylesheet" href="css/style.css">
+
+    <label class="debug-toggle">
+    <input type="checkbox" id="debugCheckbox">
+    Debug layout
+    </label>
 </head>
+
 <body>
     <header>
         <div class="header-content" style="position: relative; z-index: 1; min-height: 100px;">            
-            <h1>ABOUT ME</h1>
+            <h1>about</h1>
         </div>
     </header>
 
     <nav class="nav-grid">
-        <a href="index.html"> Home</a>
-        <a href="projects.html">Projects</a>
-        <a href="about.html" class="active">About me</a>
-        <a href="contact.html">Send me help</a>
+        <a href="index.html">home</a>
+        <a href="projects.html">projects</a>
+        <a href="about.html" class="active">about</a>
     </nav>
 
     <main>
-        <div class="card">
-            <h2>WHO AM I?</h2>
-            <div class="bio-grid">
-                <div class="bio-text">
-                    <p>Happy political science student at ETH. </p>
-                    <p>Currently experimenting with political violence, python scripts, AI coding, and satellite imagery.</p>
-                </div>
-                <div class="bio-stats">
-                     <div> You can access my C.V. <a href="media/labarthe_2026_cv.pdf"> here</a></div>
+        <div class="about-grid">    
+            <div class="about-card">
+                <h2>WHO AM I?</h2>
+                <div class="bio-grid">
+                    <div class="bio-text">
+                        <p>Happy political science student at ETH. </p>
+                        <p>Currently experimenting with political violence, python scripts, AI coding, and satellite imagery.</p>
+                        <p> You can access my C.V. <a href="media/labarthe_2026_cv.pdf"> here</a></p>                
+                    </div>
                 </div>
             </div>
-        </div>
 
+            <div class="about-card">
+                <h2>REACH OUT</h2>
+                <div class="bio-text">
+                    <p>I'm always down to talk politics, statistics, french rap, or psychological advices.</p>
+                    <p>Please take me in PhD pleaaaaaase</p> 
+                    <div> <a href="mailto:simon.labarthe@outlook.com">e-mail</a></div>
+                    <div> <a href="https://www.linkedin.com/in/simon-e-labarthe/" target="_BLANK">Linkedin</a></div>
+                    <div> <a href="https://github.com/SimonLabarthe" target="_BLANK">Github</a></div>
+                </div>
+            </div>
+   
+        </div>
+    
+    </main>
+
+    <!-- ============================================================
+         FLOATING DARK MODE TOGGLE
+         ============================================================ -->
+    <button id="darkModeToggle" class="mode-toggle" aria-label="Toggle dark mode">
+        <img id="toggleIcon" src="media/header_light.png" alt="Toggle dark mode">
+    </button>
+
+    <!-- ============================================================
+         FOOTER
+         ============================================================ -->
     <footer>
-        <p> © 2026 By Simone </p>
+        <p>© 2026 By Simone</p>
     </footer>
 
-    <script src="js/main.js"></script>
-        </main>
-
 </body>
+<script src="js/main.js"></script>
 </html>

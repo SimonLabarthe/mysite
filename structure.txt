@@ -1,0 +1,12 @@
+mysite
+|_______js
+|	|____main.js
+|
+|_______css
+|	|____style.css
+|
+|_______index.html
+|
+|_______projects.html
+|
+|_______about.html
