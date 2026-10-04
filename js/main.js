@@ -10,18 +10,18 @@ function getCounterElements(card) {
         viewBtn: card.querySelector('[id^="view-btn-"]'), 
         downloadBtn: card.querySelector('[id^="download-btn-"]')
     };
-}
+};
 
 //--helper: getProjectName(card)--
 function getProjectName(card) {
     const heading = card.querySelector('h2');
     return heading?.textContent.trim() || 'default';
-}
+};
 
 //--helper: getStoredCount(key)--
 function getStoredCount(key) {
     return parseInt(localStorage.getItem(key)) || 0;
-}
+};
 
 //--helper: incrementCounter(CounterElement, key)--
 function incrementCounter(CounterElement, key) {
@@ -29,7 +29,7 @@ function incrementCounter(CounterElement, key) {
     count++;
     CounterElement.textContent = count;
     localStorage.setItem(key, count);
-}
+};
 
 //--setup counters for all project cards--
 document.querySelectorAll('.card').forEach((card) => {
@@ -75,6 +75,37 @@ document.querySelectorAll('.card').forEach((card) => {
     }
 });
 
+//--expand/collapse--
+document.querySelectorAll('.expand-btn').forEach((btn) => {
+    let content = null;
+    const targetId = btn.dataset.target;
+    if (targetId) content = document.getElementById(targetId);
+    if (!content) {
+        const card = btn.closest('.card');
+        if (card) content = card.querySelector('.project-content');
+    }
+    if (!content) return; 
+    
+    content.classList.add('collapsible'); // mark the content as collapsible so the ::after / ::before show up
+    
+    content.classList.remove('expanded'); 
+    btn.textContent = 'Show more';
+    
+    btn.addEventListener('click', () => {
+        const isOpen = content.classList.toggle('expanded');
+        btn.textContent = isOpen ? 'Show less': 'Show more';
+        
+        if (!isOpen) {
+            btn.closest('.card')?.scrollIntoView({
+                behavior: 'smooth', 
+                block: 'nearest'
+            });
+        }
+    });
+});
+
+
+
 //---dark mode toggle---
 const toggleBtn = document.getElementById('darkModeToggle');
 const toggleIcon = document.getElementById('toggleIcon');
@@ -83,7 +114,7 @@ const profilePic = document.getElementById('profilePic');
 function applyTheme(isDark) {
     document.body.classList.toggle('dark', isDark);
     if (toggleIcon) toggleIcon.src = isDark ? 'media/header_dark.png' : 'media/header_light.png';
-}
+};
 
 applyTheme(localStorage.getItem('theme') === 'dark'); //apply the saved preference immediatly on load
 
@@ -96,7 +127,49 @@ if (toggleBtn) {
             profilePic.animate([{ opacity: 1 }, { opacity: 0.6 }, { opacity: 1 }], { duration: 300 });
         }
     });
-}
+};
+
+//---auto-scroll & expand the card targeted via url hash---
+(function () {
+    const hash = window.location.hash;
+    if (!hash) return;
+
+    const targetCard = document.querySelector(hash);
+    if (!targetCard) return;
+
+    // Expand the card's content
+    const btn = targetCard.querySelector('.expand-btn');
+    const content = targetCard.querySelector('.project-content');
+    if (btn && content && !content.classList.contains('expanded')) {
+        btn.click();
+    }
+
+    // Smoothly center it a moment later (after layout settles)
+    setTimeout(() => {
+        targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 150);
+})();
+
+//---auto-expand a card when arriving via #anchor (from index.html)---
+(function () {
+    const hash = window.location.hash;
+    if (!hash) return;
+
+    const targetCard = document.querySelector(hash);
+    if (!targetCard) return;
+
+    // Expand the card's content
+    const btn = targetCard.querySelector('.expand-btn');
+    const content = targetCard.querySelector('.project-content');
+    if (btn && content && !content.classList.contains('expanded')) {
+        btn.click();
+    }
+
+    // Smoothly center it a moment later (after layout settles)
+    setTimeout(() => {
+        targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 150);
+})();
 
 //---debug layout---
 const debugCheckbox = document.getElementById('debugCheckbox'); 
@@ -104,7 +177,43 @@ if (debugCheckbox) {
     debugCheckbox.addEventListener('change', () => {
         document.body.classList.toggle('debug', debugCheckbox.checked);
     });
-}
+};
+
+//---hover-to-expand project cards---
+document.querySelectorAll('.card .project-content').forEach((content) => {
+    // Only cards that actually overflow should be collapsible.
+    // We check after layout with a small rAF to be sure.
+    requestAnimationFrame(() => {
+        const isOverflowing = content.scrollHeight > content.clientHeight + 4;
+        if (!isOverflowing) return;   // short cards stay as-is
+
+        content.classList.add('collapsible');
+
+        const card = content.closest('.card');
+        if (!card) return;
+
+        // Expand on hover
+        card.addEventListener('mouseenter', () => {
+            content.classList.add('expanded');
+        });
+
+        // Collapse when leaving
+        card.addEventListener('mouseleave', () => {
+            content.classList.remove('expanded');
+        });
+
+        // --- Fallbacks for accessibility & touch ---
+
+        // Keyboard: expand when any focusable element inside is focused
+        card.addEventListener('focusin', () => content.classList.add('expanded'));
+        card.addEventListener('focusout', () => content.classList.remove('expanded'));
+
+        // Touch: tap toggles (since hover doesn't exist)
+        card.addEventListener('touchstart', () => {
+            content.classList.toggle('expanded');
+        }, { passive: true });
+    });
+});
 
 //---random header font---
 (function () {

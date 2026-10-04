@@ -2,15 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Simon Labarthe">
+    
     <title>Simooooooooooooooooooooooooooooooooooooone</title>
+    
     <link rel="icon" type="image/png" href="media/meta.png">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Latin+Modern+Math&display=swap" rel="stylesheet">
 
-        <label class="debug-toggle">
-    <input type="checkbox" id="debugCheckbox">
-    Debug layout
+    <label class="debug-toggle">
+        <input type="checkbox" id="debugCheckbox">
+        Debug layout
     </label>
 </head>
 <body>
@@ -32,19 +38,16 @@
             <!--------------------------------------------
                             5 MY R PACKAGES
             ---------------------------------------------->
-            <div class="card">
+            <div class="card" id="myrpackages">
                 <h2>myRpackages</h2>
                 
                 <div class="project-meta">
-                    <span class="tag">FORTHCOMING</span>
+                    <span class="tag">2026.10.04</span>
                     <span class="tag">ABSTRACT</span>
                 </div>
                 
                 <div class="project-content">
-                    <p>This article introduces myRpackages, a curated collection of R functions designed to enhance efficiency in data analysis, automated reporting, and AI-supported text classification. Researchers frequently face repetitive tasks in data preparation and output generation. The package addresses this by offering straightforward functions for creating publication-ready LaTeX/PDF tables and integrating with AI APIs for content coding. The core functions, create_descriptive_table(), create_frequency_table_2vars(), create_frequency_table_3vars(), and categorise_api(), are presented with practical examples obviously coming from starwars. By automating these common analytical workflows, myRpackages allows researchers to focus on substantive interpretation rather than technical implementation. The package is open-source and available on GitHub. </p>
-                </div>
-                
-                <button class="expand-btn" data-target="content1">Show more</button>
+                    <p>This article introduces myRpackages, a curated collection of R functions designed to enhance efficiency in data analysis, automated reporting, and AI-supported text classification. Researchers frequently face repetitive tasks in data preparation and output generation. The package addresses this by offering straightforward functions for creating publication-ready <code class="latex">LaTeX</code>/PDF tables and integrating with AI APIs for content coding. The core functions, <code class="func">create_descriptive_table()</code>, <code class="func">create_frequency_table_2vars()</code>, <code class="func">create_frequency_table_3vars()</code>, and <code class="func">categorise_api()</code>, are presented with practical examples obviously coming from starwars. By automating these common analytical workflows, myRpackages allows researchers to focus on substantive interpretation rather than technical implementation. The package is open-source and available on GitHub. </p>                </div>
                 
                 <div class="card-actions">
                     <a id="view-btn-5" class="cyber-btn small" href="media/labarthe_2026_myrpackages_draft.pdf" target="_BLANK">READ FULL ARTICLE</a>
@@ -58,7 +61,7 @@
             <!--------------------------------------------
                             4 FIFA PREDICTOR
             ---------------------------------------------->
-            <div class="card">
+            <div class="card" id="fifa_predictor">
                 <h2>Predicting FIFA26 results</h2>
 
                 <div class="project-meta">
@@ -70,13 +73,12 @@
                     <p>This project develops and evaluates statistical learning models to predict home team goal counts in international football matches, with specific application to the 2026 FIFA World Cup. Using a comprehensive dataset of over 50,000 international matches from 1990 to 2026, I integrate historical performance metrics, Elo ratings, geographical features, and country-level socioeconomic indicators.</p>
                 </div>
 
-                <button class="expand-btn" data-target="content4">Show more</button>
             </div>
 
             <!--------------------------------------------
                         3 ELECTIONS AND IPVAW 
             ---------------------------------------------->
-            <div class="card">
+            <div class="card" id="ipvaw_brazil">
                 <h2> Do left-wing or female representatives reduce violence against women? RDD evidence from Brazil </h2>
                 
                 <div class="project-meta">
@@ -87,8 +89,6 @@
                 <div class="project-content">
                     <p> A growing set of literature explores the effect of the election of female can didates on social outcomes without taking ideology into account. This essay aims to fulfill this gap by examining whether political affiliation contribute—alongside, and cumulatively—to the reduction of Interpersonal Violence against Women(IPVAW). Combining data from the electionsBR package and DATA SUS/SINAN on brazilian municipalities between 2016 and 2025, the article follow a sharp Regression Discontinuity Design (RDD) to explore whether barely winning elections have an impact on the IPVAW rate. The results reinforce Bochenkova et al. (2023) previous findings : gender matters more, while political orientation has limited effects. </p>
                 </div>
-                
-                <button class="expand-btn" data-target="content3">Show more</button>
                 
                 <div class="card-actions">
                     <a id="view-btn-3" class="cyber-btn small" href="media/labarthe_2026_representation_and_violence_against_women_in_brazil.pdf" target="_BLANK">READ FULL ARTICLE</a>
@@ -102,7 +102,7 @@
             <!--------------------------------------------
                         2 MID PREDICTOR DATASET 
             ---------------------------------------------->
-            <div class="card">
+            <div class="card" id="mid_predictor">
                 <h2> Militarised Interstate Dispute Predicted Probabilities Dataset </h2>
 
                 <div class="project-meta">
@@ -114,8 +114,6 @@
                     <p>This paper introduces a novel public dataset providing ex ante predicted probabilities of Militarized Interstate Dispute (MID) onset at the dyadic and monadic levels for the period 1992–2012. While existing quantitative research on political violence typically relies on realized conflict outcomes as explanatory variables, theoretical frameworks emphasize the importance of anticipated conflict risk in shaping state behavior regarding arming, alliance formation, and concessions. To address this gap, I estimate four statistical learning classifiers (logistic regression, elastic net, random forest, and gradient boosting) using 91 predictors. The random forest model achieves the strongest discriminative performance on a held-out test set (AUC = 0.994, precision = 0.889), substantially outperforming parametric alternatives. The resulting dataset offers researchers a theoretically grounded measure of latent conflict propensity that can be incorporated into models of militarization, preventive war, nationalist sentiment, and related phenomena.</p>
                 </div>
 
-                <button class="expand-btn" data-target="content2">Show more</button>
-                
                 <div class="card-actions">
                     <a id="view-btn-2" class="cyber-btn small" href="media/labarthe_2026_mid_predicted_probabilities_database.pdf" target="_BLANK">READ FULL ARTICLE</a>
                     <span class="counter-label">Views: <strong id="view-counter-2">0</strong></span>
@@ -128,7 +126,7 @@
             <!--------------------------------------------
                         1 DEMOCRATIC BACKSLIDE SR 
             ---------------------------------------------->
-            <div class="card">
+            <div class="card" id=democratic_backslide>
                 <h2>Economic Inequality on Democratic Backsliding: a Scoping Review</h2>
 
                 <div class="project-meta">
@@ -144,8 +142,6 @@
                     <p>Results: The 24 selected articles were published between 2012 and 2025 with 50% published after 2022. Most of the articles were conducted in North America (37%), Asia (29%) and Europe (29%). A huge majority was based on an economics (42%) or political sciences (33%) point of view, favourising statistical approaches (92%). Whereas the operationalisation of economic inequalities and democratic backsliding was diverse and acknowledge a causal positive relation between the two, studies often adopted an occidental point of view potentially misleading.</p>
                 </div>
 
-                <button class="expand-btn" data-target="content1">Show more</button>
-                
                 <div class="card-actions">
                     <a id="view-btn-1" class="cyber-btn small" href="media/labarthe_2026_economic_inequality_on_democracy.pdf" target="_BLANK">READ FULL ARTICLE</a>
                     <span class="counter-label">Views: <strong id="view-counter-1">0</strong></span>
