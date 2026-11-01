@@ -134,9 +134,9 @@ h1 {
 header h1 {
     font-family: var(--font-random, var(--font-display)); /* override set by JS (random font) */
     font-size: var(--size-random, inherit);               /* override set by JS (random size) */
-    /* [CHANGE 1] uncomment with the new random-font block in main.js */
-    /* font-weight: var(--weight-random, 700); */          /* override set by JS (random weight) */
-    /* overflow-wrap: anywhere; */                         /* keeps very wide fonts (Syncopate, Press Start 2P) inside the screen */
+    /* uncomment with the new random-font block in main.js */
+    font-weight: var(--weight-random, 700);         /* override set by JS (random weight) */
+    overflow-wrap: anywhere;                        /* keeps very wide fonts (Syncopate, Press Start 2P) inside the screen */
 }
 
 h2 {
@@ -275,8 +275,9 @@ main {
     margin-bottom: var(--space-md);
 }
 
-/* [CHANGE 3] HOME PAGE PROJECT LIST: no cards, just the start of each abstract
+/* HOME PAGE PROJECT LIST: no cards, just the start of each abstract
    Uncomment to activate (goes with the new block in index.html).
+*/
 
 .project-entry {
     padding-bottom: var(--space-md);
@@ -303,7 +304,6 @@ main {
     margin-top: 0;
     gap: var(--space-xs);
 }
-*/
 
 /*--- about page grid (two columns) ---*/
 .about-grid {
