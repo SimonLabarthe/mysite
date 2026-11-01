@@ -32,7 +32,8 @@ function incrementCounter(CounterElement, key) {
 };
 
 //--setup counters for all project cards--
-document.querySelectorAll('.card').forEach((card) => {
+document.querySelectorAll('.card, .project-entry').forEach((card) => {
+
     //get all counter elements for this card
     const { viewCounter, downloadCounter, viewBtn, downloadBtn } = getCounterElements(card);
 
@@ -279,14 +280,14 @@ document.querySelectorAll('.card .project-content').forEach((content) => {
    Keys still come from the <h2>, so the counts stay shared with projects.html.
 */
 
-/* [CHANGE 4] OPTIONAL: start the colour cycle at a random hue on every reload
-   (so each visit begins on a different colour). Needs [CHANGE 4] in css/style.css.
+/* start the colour cycle at a random hue on every reload
+   (so each visit begins on a different colour). Needs css/style.css.
+*/
 
 (function () {
     const cycle = 90; // must match the animation duration in style.css (seconds)
     document.documentElement.style.animationDelay = `-${(Math.random() * cycle).toFixed(1)}s`;
 })();
-*/
 
 /* [CHANGE 4 – fallback] If you'd rather NOT animate, and just want a random colour
    per reload: skip [CHANGE 4] in the CSS, uncomment [CHANGE 4 – fallback] there,
