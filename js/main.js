@@ -285,7 +285,7 @@ document.querySelectorAll('.card .project-content').forEach((content) => {
 */
 
 (function () {
-    const cycle = 90; // must match the animation duration in style.css (seconds)
+    const cycle = 5; // must match the animation duration in style.css (seconds)
     document.documentElement.style.animationDelay = `-${(Math.random() * cycle).toFixed(1)}s`;
 })();
 
