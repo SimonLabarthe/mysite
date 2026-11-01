@@ -459,9 +459,10 @@ main {
     display: inline-block;
     background: none;
     border: 2px solid var(--color-black);
+    border-radius: 999px;
     font-family: var(--font-body);
     font-weight: 600;
-    text-transform: uppercase;
+    text-transform: lowercase;
     letter-spacing: 0.05em;
     padding: var(--space-xs) var(--space-sm);
     cursor: pointer;
