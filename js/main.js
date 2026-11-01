@@ -218,13 +218,84 @@ document.querySelectorAll('.card .project-content').forEach((content) => {
 //---random header font---
 (function () {
     const fonts = [
-        { family: "'Bodoni Moda', serif", size: "3.4rem" }, 
-        { family: "'IBM Plex Mono', monospace", size: "2.6rem"}
+        { family: "'Bodoni Moda', serif", size: "3.4rem" },                       // Serif
+        { family: "'Playfair Display', serif", size: "3.4rem" },
+        { family: "'DM Serif Display', serif", size: "3.4rem" },
+        { family: "'Fraunces', serif", size: "3.2rem" },
+        { family: "'Cormorant Garamond', serif", size: "3.9rem", weight: 500 },
+        { family: "'Instrument Serif', serif", size: "4.4rem" },
+        { family: "'EB Garamond', serif", size: "4.0rem" },
+        { family: "'Young Serif', serif", size: "2.9rem" },
+        { family: "'Libre Caslon Display', serif", size: "4.1rem" },
+        { family: "'Italiana', serif", size: "3.6rem" },
+        { family: "'Abril Fatface', serif", size: "3.1rem" },
+        { family: "'Space Grotesk', sans-serif", size: "3.0rem", weight: 500 },   // Sans
+        { family: "'Syne', sans-serif", size: "2.6rem", weight: 700 },
+        { family: "'Unbounded', sans-serif", size: "2.3rem", weight: 600 },
+        { family: "'Bricolage Grotesque', sans-serif", size: "3.1rem", weight: 600 },
+        { family: "'Archivo Black', sans-serif", size: "2.6rem" },
+        { family: "'Big Shoulders Display', sans-serif", size: "4.0rem", weight: 800 },
+        { family: "'Bebas Neue', sans-serif", size: "4.4rem" },
+        { family: "'Anton', sans-serif", size: "3.7rem" },
+        { family: "'Syncopate', sans-serif", size: "1.9rem", weight: 700 },       // very wide
+        { family: "'IBM Plex Mono', monospace", size: "2.6rem" },                 // Mono
+        { family: "'JetBrains Mono', monospace", size: "2.7rem" },
+        { family: "'Space Mono', monospace", size: "2.6rem" },
+        { family: "'DM Mono', monospace", size: "2.7rem" },
+        { family: "'Major Mono Display', monospace", size: "2.2rem" },
+        { family: "'Special Elite', monospace", size: "3.0rem" },
+        { family: "'VT323', monospace", size: "4.0rem" },                         // Retro / pixel
+        { family: "'Press Start 2P', monospace", size: "1.6rem" },                // very wide
+        { family: "'Silkscreen', sans-serif", size: "2.3rem" },
+        { family: "'Monoton', sans-serif", size: "2.4rem" },                      // Display
+        { family: "'Bungee', sans-serif", size: "2.4rem" },
+        { family: "'Rubik Mono One', sans-serif", size: "1.9rem" },
+        { family: "'Shrikhand', cursive", size: "2.8rem" },
+        { family: "'UnifrakturMaguntia', cursive", size: "3.7rem" },
+        { family: "'Caveat', cursive", size: "4.3rem", weight: 500 },             // Handwritten
+        { family: "'Permanent Marker', cursive", size: "2.9rem" },
     ];
     const choice = fonts[Math.floor(Math.random() * fonts.length)];
+    const weight = choice.weight || 400;
+
+    // load only the chosen family from Google Fonts
+    const name = choice.family.match(/'([^']+)'/)[1];
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'https://fonts.googleapis.com/css2?family=' + name.replace(/ /g, '+') + ':wght@' + weight + '&display=swap';
+    document.head.appendChild(link);
+
     document.documentElement.style.setProperty('--font-random', choice.family);
     document.documentElement.style.setProperty('--size-random', choice.size);
+    document.documentElement.style.setProperty('--weight-random', weight);
 })();
+
+/* [CHANGE 3] COUNTERS FOR THE NEW INDEX ENTRIES
+   The new index entries are no longer ".card", so the view/download counter setup
+   at the top of this file would skip them. To activate, replace (line ~35)
+       document.querySelectorAll('.card').forEach((card) => {
+   with
+       document.querySelectorAll('.card, .project-entry').forEach((card) => {
+   Keys still come from the <h2>, so the counts stay shared with projects.html.
+*/
+
+/* [CHANGE 4] OPTIONAL: start the colour cycle at a random hue on every reload
+   (so each visit begins on a different colour). Needs [CHANGE 4] in css/style.css.
+
+(function () {
+    const cycle = 90; // must match the animation duration in style.css (seconds)
+    document.documentElement.style.animationDelay = `-${(Math.random() * cycle).toFixed(1)}s`;
+})();
+*/
+
+/* [CHANGE 4 – fallback] If you'd rather NOT animate, and just want a random colour
+   per reload: skip [CHANGE 4] in the CSS, uncomment [CHANGE 4 – fallback] there,
+   and uncomment this:
+
+(function () {
+    document.documentElement.style.setProperty('--hue', Math.floor(Math.random() * 360));
+})();
+*/
 
 //---random hover wiggle---
 function randomOffset() {

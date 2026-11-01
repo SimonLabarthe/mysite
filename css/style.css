@@ -63,6 +63,47 @@ html {
     --duration-expand: 0.6s;                     /* used for max-height + mask fade */
 }
 
+/* [CHANGE 4] SMOOTH, NEVER-ENDING COLOUR CYCLE (replaces the fixed green)
+   Pure CSS, no JS needed. @property makes --hue animatable, so the browser can
+   interpolate it. oklch() keeps the same perceived brightness on every hue, so
+   text stays readable whether it is red, blue or yellow at that moment.
+   Everything that used the green (active nav, links, "finished" borders) follows.
+   Uncomment the whole block to activate. Speed: change 90s.
+
+@property --hue {
+    syntax: '<number>';
+    inherits: true;
+    initial-value: 140;
+}
+
+:root {
+    --color-green:       oklch(45% 0.15 var(--hue));
+    --color-green-dark:  oklch(38% 0.15 var(--hue));
+    --color-green-light: oklch(50% 0.15 var(--hue));
+    animation: hue-cycle 90s linear infinite;
+}
+
+@keyframes hue-cycle {
+    from { --hue: 0;   }
+    to   { --hue: 360; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    :root { animation: none; }
+}
+*/
+
+/* [CHANGE 4 – fallback] RANDOM COLOUR ON EACH RELOAD (no animation)
+   Use this instead of the block above, together with the matching JS in main.js.
+
+:root {
+    --hue: 140;
+    --color-green:       oklch(45% 0.15 var(--hue));
+    --color-green-dark:  oklch(38% 0.15 var(--hue));
+    --color-green-light: oklch(50% 0.15 var(--hue));
+}
+*/
+
 
 /*======================================================
 3. TYPOGRAPHY
@@ -94,6 +135,9 @@ h1 {
 header h1 {
     font-family: var(--font-random, var(--font-display)); /* override set by JS (random font) */
     font-size: var(--size-random, inherit);               /* override set by JS (random size) */
+    /* [CHANGE 1] uncomment with the new random-font block in main.js */
+    /* font-weight: var(--weight-random, 700); */          /* override set by JS (random weight) */
+    /* overflow-wrap: anywhere; */                         /* keeps very wide fonts (Syncopate, Press Start 2P) inside the screen */
 }
 
 h2 {
@@ -231,6 +275,36 @@ main {
     gap: var(--space-md);
     margin-bottom: var(--space-md);
 }
+
+/* [CHANGE 3] HOME PAGE PROJECT LIST: no cards, just the start of each abstract
+   Uncomment to activate (goes with the new block in index.html).
+
+.project-entry {
+    padding-bottom: var(--space-md);
+    border-bottom: 1px solid var(--color-grey-light);
+}
+
+.project-entry .project-meta {
+    margin-bottom: var(--space-xs);
+}
+
+.project-excerpt {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    overflow: hidden;
+    color: var(--color-grey-dark);
+    margin-bottom: var(--space-sm);
+}
+
+.project-entry .card-actions {
+    border-top: none;
+    padding-top: 0;
+    margin-top: 0;
+    gap: var(--space-xs);
+}
+*/
 
 /*--- about page grid (two columns) ---*/
 .about-grid {

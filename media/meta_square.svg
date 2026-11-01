@@ -1,0 +1,7 @@
+<!-- Square favicon wrapper: the 32x23 dino PNG is centred in a 32x32 box
+     so browsers no longer stretch it to a square. The PNG is embedded (base64)
+     because SVG favicons are not allowed to load external images. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <image x="0" y="4.5" width="32" height="23" preserveAspectRatio="xMidYMid meet"
+         href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAXCAYAAABqBU3hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAD2EAAA9hAag/p2kAAADySURBVEhL5ZVLEsMwCENF739nukhwiSK7OPZ007fJ+IcEMQlwxcWY57ZiNA4xA+Dux9CsbeP9y3BAd3eYGUI8cxrhM0vkYC3jQBnZbeJ1Pm/ivyIyGZaeSXciIye/cTHAhJBaY8hU2UwzQPNAUVhR6JrWbcNLuIow4jgTi8vMDrsOVszxq8ydxAZ6bKsOt3G0YRnuAB6PYHE8MZDeXxdeNzMpjhkDEZSD9wjRJCwPVgzcfkrF+xCiUjioGJBZpOzKVVFUDMgsUhXs8PDZcq6VylQxwFzEEr35IU8MbGXWgA8+Su2POsPMbqUa59UaJuP/KW+ko1xMVqWCUAAAAABJRU5ErkJggg=="/>
+</svg>
